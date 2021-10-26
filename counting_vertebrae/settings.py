@@ -20,7 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qii=6s!$pfuz(66)^6%j$x8dv+(=%mrcg+pa6=dmbo*3pbvd-_'
+import environ
+env = environ.Env()
+SECRET_KEY = "django-insecure-qii=6s!$pfuz(66)^6%j$x8dv+(=%mrcg+pa6=dmbo*3pbvd-_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -142,3 +144,17 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+CELERY_BROKER_URL = "redis://:p3bfe17c51ffcaed5a595a89ee0e5230682c604afed54460ea7eceac99eabf6e3@ec2-107-20-253-248.compute-1.amazonaws.com:17700"
+
+CELERY_RESULT_BACKEND = "redis://:p3bfe17c51ffcaed5a595a89ee0e5230682c604afed54460ea7eceac99eabf6e3@ec2-107-20-253-248.compute-1.amazonaws.com:17700"
+
+# CELERY_ACCEPT_CONTENT = ['application/json']
+
+# CELERY_RESULT_SERIALIZER = 'json'
+
+# CELERY_TASK_SERIALIZER = 'json'
+
+
+
+
+# compute-instance-001.uintl8.0001.usw2.cache.amazonaws.com

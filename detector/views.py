@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser
 from rest_framework.decorators import parser_classes
 from rest_framework.response import Response
+from rest_framework import status
 from mydarknet.python.darknet import load_net, load_image, load_meta, detect
 from pathlib import Path
 from .models import ImageModel
@@ -22,17 +23,17 @@ class ImageDetectorView(APIView):
 
     def post(self, request, format=None):
         im = request.FILES["file"]
+        print(im)
     
         image = ImageModel.objects.create(image=im, name=im.name)
-        print(image.name)
-        print(darknet.parent)
-        print(image.name)
-        # print(image.image)
-        # print(dir(image))
+ 
         r = detect(net, meta, bytes(darknet.parent/'images'/image.name))
-        print(r)
-        subprocess.run(["rm", darknet.parent/'images'/image.name])
-        return Response(r)
+        if r:
+            print(r)
+            subprocess.run(["rm", darknet.parent/'images'/image.name])
+            return Response(r, status=status.HTTP_200_OK)
+        return Response({"msg": "Something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
+        
 
 class ImageDetectorReturnImage(APIView):
 
