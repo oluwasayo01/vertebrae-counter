@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  detector:
+  backend:
     
     build:
       context: .
@@ -12,13 +12,13 @@ services:
 
     env_file: 
       - .env
-    
-    volumes:
-      - '.:/api'
-      - './mydarknet:/api/mydarknet'
-    
-    
+        
     command: ["./activate.sh"]
+
+  # frontend:
+
+
+
   
   # subscriber:
   #   build: 
