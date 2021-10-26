@@ -23,13 +23,13 @@ class ImageDetectorView(APIView):
 
     def post(self, request, format=None):
         im = request.FILES["file"]
-        print(im)
+        # print(im)
     
         image = ImageModel.objects.create(image=im, name=im.name)
  
         r = detect(net, meta, bytes(darknet.parent/'images'/image.name))
         if r:
-            print(r)
+            # print(r)
             subprocess.run(["rm", darknet.parent/'images'/image.name])
             return Response(r, status=status.HTTP_200_OK)
         return Response({"msg": "Something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
@@ -42,7 +42,7 @@ class ImageDetectorReturnImage(APIView):
         im = request.FILES["file"]
         image = ImageModel.objects.create(image=im, name=im.name)
         r = detect(net, meta, bytes(darknet.parent/'images'/image.name))
-        print(r)
+        # print(r)
         return Response(r)
 
 # Create your views here.
