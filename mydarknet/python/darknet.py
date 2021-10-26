@@ -44,7 +44,6 @@ class METADATA(Structure):
                 ("names", POINTER(c_char_p))]
 
 darknet_path = Path(__file__).parent.parent/'libdarknet.so'
-print("path ------- ", darknet_path)
 
 lib = CDLL(darknet_path, RTLD_GLOBAL)
 # lib = CDLL("libdarknet.so", RTLD_GLOBAL)

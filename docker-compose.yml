@@ -9,9 +9,31 @@ services:
 
     ports:
       - '8000:8000'
+
+    env_file: 
+      - .env
     
     volumes:
       - '.:/api'
+      - './mydarknet:/api/mydarknet'
+    
     
     command: ["./activate.sh"]
+  
+  # subscriber:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+
+  #   env_file: 
+  #     - .env
+    
+  #   volumes:
+  #     - './mydarknet:/api/mydarknet'
+    
+
+  #   restart: "on-failure"
+
+  #   command: python subscriber.py
+    
   

@@ -32,3 +32,4 @@ libdarknet.a
 venv/
 __pycache__
 yolov3.weights
+functions/
