@@ -31,7 +31,7 @@ libdarknet.a
 .dcm
 venv/
 __pycache__
-yolov3.weights
+# yolov3.weights
 functions/
 */node_modules
 */build
