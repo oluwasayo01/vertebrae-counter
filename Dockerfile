@@ -28,4 +28,5 @@ RUN cd front && \
 
 
 
-# CMD gunicorn --bind 0.0.0.0:8000 --workers 3 counting_vertebrae.wsgi:application
+# CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 counting_vertebrae.wsgi:application
+ENTRYPOINT [ "./activate.sh" ]
