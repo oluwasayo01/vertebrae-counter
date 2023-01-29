@@ -11,7 +11,8 @@ import subprocess
 
 darknet = Path(__file__).parent.parent/'mydarknet'
 yolo_path = darknet/'config/yolov3-vertebrae.cfg'
-yolo_weights = darknet/'yolov3-vertebrae_final.weights'
+# yolo_weights = darknet/'yolov3-vertebrae_final.weights'
+yolo_weights = darknet/'yolov3-vertebrae-unclassified.weights'
 vertebrae_data = darknet/'config/vertebrae.data'
 
 net = load_net(bytes(yolo_path), bytes(yolo_weights), 0)

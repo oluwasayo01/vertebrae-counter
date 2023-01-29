@@ -1,3 +1,0 @@
-heroku container:push web -a vertebrae-counter
-
-heroku container:release -a vertebrae-counter web

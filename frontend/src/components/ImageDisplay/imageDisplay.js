@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Boundingbox from "react-bounding-box";
-import client from "./Client";
+import client from "../../utils/Client";
 import { Menu, Layout, Spin, Row, Col, Card, Switch, Button } from "antd";
 // import { useHistory } from "react-router";
 import "antd/dist/antd.css";
@@ -96,7 +96,6 @@ const ImageDisplay = ({ fileList }) => {
     <Layout style={{ height: "100vh" }}>
       <Header />
       <Layout style={{ height: "70vh" }}>
-        
         <Layout style={{ padding: "0 24px 24px", height: "100vh" }}>
           <Content
             className="site-layout-background"
