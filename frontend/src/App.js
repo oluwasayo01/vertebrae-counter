@@ -1,25 +1,20 @@
 import React, { useEffect } from "react";
-import ImageDisplay from "./imageDisplay";
-// import ImageContext from "./imageContext";
+import ImageDisplay from "./components/ImageDisplay/imageDisplay";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./components/Home/Home";
 // import Detections from "./Detections";
 
 const App = () => {
-  // const state = useContext(ImageContext);
-
   useEffect(() => {}, []);
 
   return (
     <Router>
       <Switch>
+        <Route path="/home/" component={Home} />
         <Route exact path="/" component={ImageDisplay} />
         <Route path="/detections/" component={ImageDisplay} />
       </Switch>
     </Router>
-    // <ImageContext.Provider value={state}>
-    //   <ImageDisplay />
-    // </ImageContext.Provider>
   );
 };
 

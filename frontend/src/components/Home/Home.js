@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import { Layout } from "antd";
-import ImageDisplay from "./imageDisplay";
+import ImageDisplay from "../ImageDisplay/imageDisplay";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
-const Input = styled.input.attrs((props) => ({
+const Input = styled.input.attrs(() => ({
   type: "file",
   multiple: true,
 }))`
@@ -51,8 +51,6 @@ const Home = () => {
 
   const handleClick = () => {
     if (!files.length) return;
-    console.log("click");
-    // history.push({ pathname: "/detections", state: files });
     setSelect(false);
   };
 
