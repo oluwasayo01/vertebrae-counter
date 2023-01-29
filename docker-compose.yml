@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  detector:
+  backend:
     
     build:
       context: .
@@ -9,9 +9,10 @@ services:
 
     ports:
       - '8000:8000'
-    
-    volumes:
-      - '.:/api'
-    
+
+    env_file: 
+      - .env
+        
     command: ["./activate.sh"]
+    
   

@@ -20,10 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qii=6s!$pfuz(66)^6%j$x8dv+(=%mrcg+pa6=dmbo*3pbvd-_'
+import environ
+import os
+env = environ.Env()
+SECRET_KEY = "django-insecure-qii=6s!$pfuz(66)^6%j$x8dv+(=%mrcg+pa6=dmbo*3pbvd-_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG', False)
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,7 +75,9 @@ CORS_ALLOW_METHODS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'frontend' / 'build'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +89,9 @@ TEMPLATES = [
         },
     },
 ]
-
+STATICFILES_DIRS = [
+    BASE_DIR / 'frontend' / 'build' / 'static'
+]
 WSGI_APPLICATION = 'counting_vertebrae.wsgi.application'
 
 
@@ -135,10 +143,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# CELERY_BROKER_URL = "redis://:p3bfe17c51ffcaed5a595a89ee0e5230682c604afed54460ea7eceac99eabf6e3@ec2-107-20-253-248.compute-1.amazonaws.com:17700"
+
+# CELERY_RESULT_BACKEND = "redis://:p3bfe17c51ffcaed5a595a89ee0e5230682c604afed54460ea7eceac99eabf6e3@ec2-107-20-253-248.compute-1.amazonaws.com:17700"
+
+# CELERY_ACCEPT_CONTENT = ['application/json']
+
+# CELERY_RESULT_SERIALIZER = 'json'
+
+# CELERY_TASK_SERIALIZER = 'json'
 
 

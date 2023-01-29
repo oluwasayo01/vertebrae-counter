@@ -1,13 +1,20 @@
-FROM python:3.9
+FROM nikolaik/python-nodejs:python3.7-nodejs14
 
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /api
+WORKDIR /app
+
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 
 ADD . .
 
-RUN pip install -r requirements.txt
+RUN yarn cache clean
+RUN cd frontend && \ 
+    yarn install && \
+    yarn build && \
+    cd ..
 
-EXPOSE 8000
+ENV PORT=8000
 
 ENTRYPOINT [ "./activate.sh" ]
