@@ -1,4 +1,4 @@
 #!/bin/bash
 
 docker build -t vcounter --no-cache .
-docker run vcounter -p 8500:800 vcounter
+docker run -d -p 8500:8000 vcounter
