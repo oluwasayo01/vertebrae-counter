@@ -4,6 +4,8 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
+ARG PORT=8000
+
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
@@ -15,6 +17,6 @@ RUN cd frontend && \
     yarn build && \
     cd ..
 
-ENV PORT=8000
+ENV PORT=${PORT}
 
 ENTRYPOINT [ "./activate.sh" ]

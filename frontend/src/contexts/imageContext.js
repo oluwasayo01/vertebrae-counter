@@ -1,8 +1,6 @@
 import React from "react";
 
-const sayHello = (text) => {
-    console.log(text)
-}
+const loadContext = (text) => {};
 
-const ImageContext = React.createContext({data: ["Hello"], func: sayHello})
+const ImageContext = React.createContext({ data: [], func: loadContext });
 export default ImageContext;

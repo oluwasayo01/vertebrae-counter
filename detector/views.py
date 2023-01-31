@@ -23,9 +23,7 @@ meta = load_meta(bytes(vertebrae_data))
 class ImageDetectorView(APIView):
 
     def post(self, request, format=None):
-        im = request.FILES["file"]
-        # print(im)
-    
+        im = request.FILES["file"]    
         image = ImageModel.objects.create(image=im, name=im.name)
  
         r = detect(net, meta, bytes(darknet.parent/'images'/image.name))
@@ -43,7 +41,4 @@ class ImageDetectorReturnImage(APIView):
         im = request.FILES["file"]
         image = ImageModel.objects.create(image=im, name=im.name)
         r = detect(net, meta, bytes(darknet.parent/'images'/image.name))
-        # print(r)
         return Response(r)
-
-# Create your views here.

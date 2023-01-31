@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router";
 import { Layout } from "antd";
 import ImageDisplay from "../ImageDisplay/imageDisplay";
 
@@ -39,7 +38,6 @@ const Div = styled.div`
 const Home = () => {
   const [select, setSelect] = useState(true);
   const [files, setFiles] = useState([]);
-  const history = useHistory();
   useEffect(() => {
     console.log(files);
   }, [files]);
