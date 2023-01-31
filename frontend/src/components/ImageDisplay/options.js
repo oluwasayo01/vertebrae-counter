@@ -6,7 +6,9 @@ const boxOptions = {
   },
   style: {
     maxWidth: "80vw",
-    maxHeight: "90vh",
+    height: "100%",
+    maxHeight: "100vh",
+    overflow: "scroll",
   },
 };
 

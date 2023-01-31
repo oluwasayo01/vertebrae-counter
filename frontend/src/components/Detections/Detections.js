@@ -9,7 +9,6 @@ const Detections = () => {
   useEffect(() => {
     setFiles(state);
   }, []);
-  console.log(files);
   return <ImageDisplay files={files} />;
 };
 

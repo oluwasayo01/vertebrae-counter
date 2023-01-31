@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
 import Boundingbox from "react-bounding-box";
 import client from "../../utils/Client";
-import { Menu, Layout, Spin, Row, Col, Card, Switch, Button } from "antd";
-// import { useHistory } from "react-router";
+import { Layout, Spin, Row, Col, Card, Switch, Button } from "antd";
 import "antd/dist/antd.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CirclePicker } from "react-color";
 import boxOptions from "./options";
 import { Header } from "antd/lib/layout/layout";
 
-const { SubMenu } = Menu;
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 
-const ImageDisplay = ({ fileList }) => {
-  const [files, setFiles] = useState([]);
+const ImageDisplay = () => {
   const [image, setImage] = useState(null);
   const [options, setOptions] = useState(boxOptions);
   const [selected, setSelected] = useState(false);
@@ -24,7 +21,6 @@ const ImageDisplay = ({ fileList }) => {
   const [detected, setDetected] = useState(true);
 
   useEffect(() => {
-    // console.log("Image Display: ", files.length);
     if (image) {
       setImage(image);
     }
@@ -34,6 +30,8 @@ const ImageDisplay = ({ fileList }) => {
     e.preventDefault();
     setImage(null);
     if (e.target.files.length > 0) {
+      setBoxes([])
+      setDisplay([])
       setImageObject(e.target.files[0]);
       setSelected(true);
       setImage(URL.createObjectURL(e.target.files[0]));
@@ -95,32 +93,46 @@ const ImageDisplay = ({ fileList }) => {
   return (
     <Layout style={{ height: "100vh" }}>
       <Header />
-      <Layout style={{ height: "70vh" }}>
-        <Layout style={{ padding: "0 24px 24px", height: "100vh" }}>
+      <Layout>
+        <Layout
+          style={{
+            padding: "0 24px 24px",
+            overflow: "hidden",
+          }}
+        >
           <Content
             className="site-layout-background"
             style={{
               padding: 24,
-              margin: 0,
+              margin: 10,
               minHeight: 280,
+              height: 500,
+              overflow: "scroll",
             }}
           >
-            <Row>
+            <Row style={{ height: "100vh" }}>
               <Col span={16}>
-                <div style={{ height: "100vh" }}>
+                <div>
                   <Button onClick={handleSubmit} type="primary" block>
                     Send
                   </Button>
                   <input type="file" onChange={handleSelect} />
-                  <Spin spinning={loading} tip="Counting vertebrae...">
-                    {selected && (
-                      <Boundingbox
-                        image={image}
-                        boxes={display}
-                        options={options}
-                      />
-                    )}
-                  </Spin>
+                  <div
+                    style={{
+                      height: "100vh",
+                      overflow: "scroll",
+                    }}
+                  >
+                    <Spin spinning={loading} tip="Counting vertebrae...">
+                      {selected && (
+                        <Boundingbox
+                          image={image}
+                          boxes={display}
+                          options={options}
+                        />
+                      )}
+                    </Spin>
+                  </div>
                 </div>
               </Col>
               <Col span={8}>
