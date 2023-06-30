@@ -4,7 +4,6 @@ This project demonstrates the use of YOLOv3 algorithm (see [pjreddie's](https://
 The image dataset of knockout mice used for training the YOLO model was obtained from the International Mouse Phenotyping Consortium (IMPC) [website](https://www.mousephenotype.org/data/search).
 
 ## Start up
-The deployed version of the app can be accessed at http://54.227.62.81:8500
 
 To start up the application locally, clone the repo then then download the weights file [here](https://drive.google.com/file/d/1UmEtgd2U0DjQiP8lGoDEZ80Cb31Vzluj/view?usp=share_link). The weights file is the result of the trained model by applying the YOLOv3 algorithm on the mice x-ray images.
 
